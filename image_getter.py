@@ -18,12 +18,10 @@ if thumbnail_spec and thumbnail_spec['href']:
     print thumbnail_spec['href']
 
 def image_dem():
-    image = """<img src="%s"><br />"""
-    for img in soup.findAll("img", src=True):
-       if "sprite" not in img["src"]:
-           image_url = urlparse.urljoin(url, img["src"])
-           filename = img["src"].split("/")[-1]
-           outpath = os.path.join('test/', filename)
-           urlretrieve(image_url, outpath)
+    for img in soup.findAll("img"):
+       image_url = urlparse.urljoin(url, img["src"])
+       filename = img["src"].split("/")[-1]
+       outpath = os.path.join('test/', filename)
+       urlretrieve(image_url, outpath)
 
 image_dem()
